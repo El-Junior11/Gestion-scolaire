@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-display text-ink;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-ink px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-ink-light disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-line bg-surface px-4 py-2.5 text-sm font-medium text-ink transition-colors hover:bg-paper;
+  }
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-brick/30 bg-surface px-3 py-2 text-sm font-medium text-brick transition-colors hover:bg-brick/5;
+  }
+  .card {
+    @apply rounded-lg border border-line bg-surface shadow-card;
+  }
+  .input-field {
+    @apply w-full rounded-md border border-line bg-surface px-3 py-2 text-sm text-ink placeholder:text-muted/70 focus:outline-none focus:ring-2 focus:ring-ink/20 focus:border-ink;
+  }
+  .label-field {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .table-header {
+    @apply px-4 py-3 text-left text-sm font-semibold text-ink/70 border-b border-line;
+  }
+  .table-cell {
+    @apply px-4 py-3 text-sm text-ink border-b border-line/70;
+  }
+}
+
+/*
+  Mode sombre : la classe .dark est posée sur le conteneur de l'application
+  (voir AppLayout), pas sur <html>. La page d'accueil et l'écran de connexion
+  ne sont donc jamais concernés et gardent leur apparence actuelle, tout comme
+  la barre latérale (Sidebar), dont aucune des classes ci-dessous ne fait
+  partie. La palette (ink, forest, gold, brick, paper...) n'est pas modifiée :
+  ces règles réutilisent simplement les teintes déjà définies dans
+  tailwind.config.js pour inverser fond/texte là où c'est nécessaire.
+*/
+.dark .bg-paper { @apply bg-ink-dark; }
+.dark .bg-surface { @apply bg-ink-light; }
+.dark .border-line,
+.dark .border-line\/70 { @apply border-white/10; }
+.dark .text-ink { @apply text-paper; }
+.dark .text-ink\/70 { @apply text-paper/70; }
+.dark .text-ink\/80 { @apply text-paper/80; }
+.dark .text-muted { @apply text-white/50; }
+.dark .placeholder\:text-muted\/70::placeholder { @apply text-white/35; }
+.dark .bg-ink\/5 { @apply bg-white/10; }
+.dark .hover\:bg-paper\/60:hover { @apply bg-white/5; }
+.dark .hover\:bg-paper:hover { @apply bg-white/5; }
+.dark .hover\:text-ink:hover { @apply text-paper; }
+.dark .hover\:text-ink-light:hover { @apply text-gold-light; }
+.dark .focus\:border-ink:focus { @apply border-white/30; }
+.dark .focus\:ring-ink\/20:focus { @apply ring-white/10; }
+.dark .shadow-card { box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35); }

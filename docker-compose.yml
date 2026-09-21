@@ -1,0 +1,16 @@
+services:
+  backend:
+    build: ./backend
+    container_name: ecole-backend
+    ports:
+      - "5005:5000"
+    restart: unless-stopped
+
+  frontend:
+    build: ./frontend
+    container_name: ecole-frontend
+    ports:
+      - "5373:5373"
+    restart: unless-stopped
+    depends_on:
+      - backend
